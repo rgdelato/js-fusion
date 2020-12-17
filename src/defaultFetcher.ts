@@ -1,6 +1,6 @@
 export default async function fetcher(
   url: string,
-  options?: { headers?: object }
+  options?: { headers?: object } | null
 ) {
   const res = await fetch(url, {
     ...options,
