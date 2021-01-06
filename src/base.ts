@@ -58,6 +58,7 @@ type MessageDataType = {
 };
 
 // constants
+const CLIENT_ID = uuidv4();
 const MESSAGE_HEADER =
   "Stl.Fusion.Bridge.Messages.SubscribeMessage, Stl.Fusion";
 const SOCKET_TIMEOUT = 30000; // hardcoded 30-second timeout for socket connection
@@ -75,7 +76,7 @@ const DEFAULT_CONFIG = {
 
 // global state
 let FUSION: FusionType = {
-  clientId: uuidv4(),
+  clientId: CLIENT_ID,
   publishers: new Map(),
   waitingForReconnect: new Set(),
 };
