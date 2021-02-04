@@ -1,7 +1,7 @@
 {
-  "name": "@rgdelato/js-fusion",
-  "version": "1.0.4",
-  "description": "",
+  "name": "stl.fusion",
+  "version": "1.0.6",
+  "description": "JS client for STL.Fusion",
   "main": "lib/index",
   "types": "lib/index",
   "scripts": {
