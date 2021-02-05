@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/rgdelato/js-fusion#readme",
   "peerDependencies": {
-    "mobx": "^6.0.0",
+    "mobx": "^6.1.0",
     "react": "^16.8.0"
   },
   "peerDependenciesMeta": {

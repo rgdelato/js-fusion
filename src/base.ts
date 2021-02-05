@@ -4,31 +4,31 @@ import { v4 as uuidv4 } from "uuid";
 import DEFAULT_FETCHER from "./defaultFetcher";
 import { isDocumentVisible, isOnline } from "./utils";
 
-// TODO: Register module on npm
 // BUG: Look into issues with reconnecting and offline interaction
 // TODO: Add concept of grouping multiple API calls together and update all
 //       inconsistent data in the group when one member would update
-// NOTE: Hooks requires react@>=16.8.0
-// NOTE: MobX requires mobx@>=6.0.4
+// TODO: merge argConfig into existing config (use lowest wait value?)
 
-// types
-export type ConfigType = {
+// typings
+export interface ConfigType {
   uri?: string;
   options?: {
     wait?: number;
     fetcher?: typeof DEFAULT_FETCHER;
   };
-};
+}
 
-type CallbackArgsType<T> = {
+interface CallbackArgsType<T> {
   loading: boolean;
   error?: Error | null;
   data: T;
-};
+}
 
-export type ResultType<T> = CallbackArgsType<T> & { cancel: () => void };
+export interface ResultType<T> extends CallbackArgsType<T> {
+  cancel: () => void;
+}
 
-type FusionType = {
+interface FusionType {
   clientId: string;
   publishers: Map<
     string,
@@ -43,19 +43,19 @@ type FusionType = {
     }
   >;
   waitingForReconnect: Set<() => Promise<void>>;
-};
+}
 
-type HeaderType = {
+interface HeaderType {
   PublicationRef: {
     PublisherId: string;
     PublicationId: string;
   };
-};
+}
 
-type MessageDataType = {
+interface MessageDataType {
   PublisherId: string;
   PublicationId: string;
-};
+}
 
 // constants
 const CLIENT_ID = uuidv4();
@@ -129,7 +129,7 @@ export default function createFusionSubscription<T>(
   defaultData: T,
   url: string | null,
   params?: object | null,
-  argConfig?: ConfigType // TODO: merge argConfig into existing config
+  argConfig?: ConfigType
 ) {
   let loading = true;
   let error: Error | null | undefined = null;
