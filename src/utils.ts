@@ -1,5 +1,3 @@
-import deepEqual from "lodash/isEqual";
-
 export function isDocumentVisible() {
   if (
     typeof document !== "undefined" &&
