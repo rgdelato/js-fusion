@@ -30,10 +30,10 @@ The `useFusionSubscription` hook expects a default value for data and a URL endp
 import React from "react";
 import { makeAutoObservable } from "mobx";
 import { observer } from "mobx-react-lite";
-import { fusion, makeFusionObservable } from "stl.fusion";
+import { fusionData, makeFusionObservable } from "stl.fusion";
 
 class TimeStore {
-  @fusion("/api/Time/get")
+  @fusionData("/api/Time/get")
   time = "";
 
   constructor() {
@@ -49,7 +49,7 @@ const Time = observer(() => {
 });
 ```
 
-The MobX integration currently uses a decorator that expects the similar arguments to the React Hook (`url`, `params?`, and `config?`). Currently, the decorator only returns the value for `data`, but another decorator that returns `{ loading, error, data, cancel }` will be added soon.
+The MobX integration currently uses a decorator that expects the similar arguments to the React Hook (`url`, `params?`, and `config?`). The `@fusionData` decorator only returns the value for `data`, but you can also use the `@fusion` decorator to return `{ loading, error, data, cancel }`.
 
 ## Configuration
 
@@ -69,7 +69,7 @@ configure({
 ```tsx
 function Chat() {
   const [loading, setLoading] = useState(false);
-  const { data, loading, error, cancel } = useFusionSubscription<ChatTailType>(
+  const { loading, error, data, cancel } = useFusionSubscription<ChatTailType>(
     null,
     "/api/Chat/getChatTail?length=5"
   );
@@ -91,6 +91,10 @@ function Chat() {
 ```
 
 The client also returns a `cancel` function, which can be called to immediately ask the server for an update. This is typically useful just after the user has updated some server data and we want to show them their update as soon as possible, for example, after sending a chat message.
+
+## Types
+
+The return type of `{ loading, error, data, cancel }` is exported from `stl.fusion` as `ResultType<T>` and the `config` param type is exported as `ConfigType`.
 
 ## Vanilla JS
 

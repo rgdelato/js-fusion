@@ -4,13 +4,14 @@ import createFusionSubscription, {
   ResultType,
 } from "./base";
 import { useFusionSubscription } from "./hooks";
-import { fusion, makeFusionObservable } from "./mobx";
+import { fusion, fusionData, makeFusionObservable } from "./mobx";
 
 export {
   createFusionSubscription as default,
   configure,
   useFusionSubscription,
   fusion,
+  fusionData,
   makeFusionObservable,
 };
 

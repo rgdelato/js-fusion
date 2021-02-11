@@ -4,12 +4,9 @@ import { v4 as uuidv4 } from "uuid";
 import DEFAULT_FETCHER from "./defaultFetcher";
 import { isDocumentVisible, isOnline } from "./utils";
 
-// TODO: Register module on npm
 // BUG: Look into issues with reconnecting and offline interaction
 // TODO: Add concept of grouping multiple API calls together and update all
 //       inconsistent data in the group when one member would update
-// NOTE: Hooks requires react@>=16.8.0
-// NOTE: MobX requires mobx@>=6.0.4
 
 // types
 export type ConfigType = {
